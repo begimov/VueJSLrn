@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <template>
+        <ul>
+          <li v-if="loaded" v-for="user in users">
+            <p>{{ user.name }} {{ user.age }}</p>
+          </li>
+          <p v-if="!loaded">Loading...</p>
+        </ul>
+      </template>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            loaded: false,
+            users: []
+          },
+          mounted () {
+            setTimeout(() => {
+              this.users = [
+                { name: 'Greg', age: 10 },
+                { name: 'Adam', age: 20 },
+                { name: 'Aaron', age: 30 },
+              ]
+              this.loaded = true
+            }, 3000)
+          }
+      })
+    </script>
+
+  </body>
+</html>
