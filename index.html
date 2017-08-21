@@ -7,7 +7,9 @@
   <body>
 
     <div id="app">
-      {{ message }}
+      <template v-if="count > 1">
+        {{ message }} {{ count }}
+      </template>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -16,6 +18,8 @@
       let app = new Vue({
           el: '#app',
           data: {
+            loaded: false,
+            count: 1,
             message: 'Hello Vue!'
           }
       })
