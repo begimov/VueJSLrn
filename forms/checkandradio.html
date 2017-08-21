@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <input type="checkbox" id="autoplay" v-model="autoplay" @change="autoplayOn">
+      Autolay is {{ autoplay ? 'enabled' : 'disabled' }}
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            autoplay: false
+          },
+          methods: {
+            autoplayOn () {
+              console.log(this.autoplay)
+            }
+          },
+          mounted () {
+            //
+          }
+      })
+    </script>
+
+  </body>
+</html>
