@@ -8,7 +8,10 @@
 
     <div id="app">
       <form action="#" @submit.prevent="submit">
+        <input type="text" id="name" v-model="form.name">
+        <input type="text" id="name" v-model="form.email">
         <button type="submit">Submit</button>
+        {{ form }}
       </form>
     </div>
 
@@ -18,11 +21,18 @@
       let app = new Vue({
           el: '#app',
           data: {
-
+            name: null,
+            form: {
+              name: null,
+              email: null,
+              password: null
+            }
           },
           methods: {
             submit () {
-              console.log('submited');
+              console.log(this.name)
+              // ajax send data
+              console.log(this.form);
             }
           },
           mounted () {
