@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <p>{{ count }}</p>
+      <a href="#" @click.prevent="clicked">{{ click }}</a>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            count: 0,
+            click: 'Click me'
+          },
+          methods: {
+            clicked (e) {
+              this.count++
+              console.log('clicked')
+              console.log(e)
+              this.click = 'Clicked'
+            }
+          },
+          mounted () {
+
+          }
+      })
+    </script>
+
+  </body>
+</html>
