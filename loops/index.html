@@ -9,8 +9,10 @@
     <div id="app">
       <template>
         <ul>
-          <li v-if="loaded" v-for="user in users">
-            <p>{{ user.name }} {{ user.age }}</p>
+          <li v-if="loaded" v-for="user, index in users">
+            <p v-if="index === 0">First</p>
+            <p>#{{ index + 1}} {{ user.name }} {{ user.age }}</p>
+            <p v-for="value, property in user">{{ property }}: {{ value }}</p>
           </li>
           <p v-if="!loaded">Loading...</p>
         </ul>
@@ -34,7 +36,7 @@
                 { name: 'Aaron', age: 30 },
               ]
               this.loaded = true
-            }, 3000)
+            }, 1000)
           }
       })
     </script>
