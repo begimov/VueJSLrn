@@ -9,6 +9,19 @@
     <div id="app">
       <input type="checkbox" id="autoplay" v-model="autoplay" @change="autoplayOn">
       Autolay is {{ autoplay ? 'enabled' : 'disabled' }}
+      <br><br>
+
+      <form action="#" @submit.prevent="submit">
+        <input type="checkbox" value="promotion1" v-model="promotions"> Promotion 1<br>
+        <input type="checkbox" value="promotion2" v-model="promotions"> Promotion 2<br>
+        <button type="submit">SUBMIT</button>
+      </form>
+
+      <form action="#" @submit.prevent="submitRadio">
+        <input type="radio" value="promotion1" v-model="promotionsRadio"> Promotion 1<br>
+        <input type="radio" value="promotion2" v-model="promotionsRadio"> Promotion 2<br>
+        <button type="submit">SUBMIT</button>
+      </form>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -17,11 +30,19 @@
       let app = new Vue({
           el: '#app',
           data: {
-            autoplay: false
+            autoplay: false,
+            promotions: [],
+            promotionsRadio: null
           },
           methods: {
             autoplayOn () {
               console.log(this.autoplay)
+            },
+            submit () {
+              console.log(this.promotions)
+            },
+            submitRadio () {
+              console.log(this.promotionsRadio)
             }
           },
           mounted () {
