@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+
+      <template>
+        {{ count }} is
+      </template>
+      <template v-if="count < 5">
+         too low<br>
+      </template>
+      <template v-else-if="count >= 5 && count < 10">
+        ok<br>
+      </template>
+      <template v-else>
+        too high<br>
+      </template>
+
+      <template v-if="loaded">
+        {{ message }}
+      </template>
+      <template v-else>
+        Please wait...
+      </template>
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            loaded: false,
+            count: 1,
+            message: 'New messages'
+          },
+          mounted () {
+            console.log('mounted');
+            setInterval(() => {
+              this.loaded = true
+              this.count = Math.floor(Math.random() * (20 - 1) + 1)
+            }, 1000)
+          }
+      })
+    </script>
+
+  </body>
+</html>
