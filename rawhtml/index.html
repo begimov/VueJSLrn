@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <p v-html="body" style="white-space: pre-line"></p>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            body: "<b>ssdfsfsdf</b>\nNew line"
+          },
+          methods: {
+            //
+          },
+          mounted () {
+            //
+          }
+      })
+    </script>
+
+  </body>
+</html>
