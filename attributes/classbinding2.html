@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style media="screen">
+    .warning {
+      color: orange;
+    }
+    .danger {
+      color: red;
+    }
+  </style>
+  <body>
+
+    <div id="app">
+      <textarea :class="{
+        'warning': text.length > 5 & text.length <= 10,
+        'danger': text.length > 10,
+      }" rows="8" cols="80" v-model="text"></textarea>
+      {{ text.length }}
+
+      <textarea :class="textClass" rows="8" cols="80" v-model="text2" @input="input"></textarea>
+      {{ text2.length }}
+
+      <textarea :class="textClass2" rows="8" cols="80" v-model="text3"></textarea>
+      {{ text3.length }}
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            text: '',
+            text2: '',
+            text3: '',
+            textClass: {
+              warning: false,
+              danger: false
+            }
+          },
+          computed: {
+            textClass2: function () {
+              return {
+                warning: this.text3.length > 5,
+                danger: this.text3.length > 10
+              }
+            }
+          },
+          methods: {
+            input () {
+              if (this.text2.length > 10) {
+                this.textClass.warning = false;
+                this.textClass.danger = true;
+              } else if (this.text2.length > 5) {
+                this.textClass.warning = true;
+                this.textClass.danger = false;
+              }
+            }
+          },
+          mounted () {
+
+          }
+      })
+    </script>
+
+  </body>
+</html>
