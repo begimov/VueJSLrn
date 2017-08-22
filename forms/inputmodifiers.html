@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      Price: <input type="text" v-model.number="inputs.price" @input="calculateTotal">
+      {{ inputs.price + constants.shipping }}
+      {{ outputs.total }}
+
+      <form action="#" @submit.prevent="submit">
+        <textarea rows="8" cols="80" v-model.trim='inputs.text'></textarea>
+      </form>
+      Length: {{ inputs.text.length }}
+      <template v-if="inputs.text.length > constants.maxChars">
+        TOO MANY CHARS! Please delete {{ inputs.text.length - constants.maxChars }} chars
+      </template>
+      <br>
+      {{ inputs.text }}
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            inputs: {
+              price: 0,
+              text: ''
+            },
+            constants: {
+              shipping: 5.5,
+              maxChars: 10
+            },
+            outputs: {
+              total: 0
+            }
+          },
+          methods: {
+            calculateTotal() {
+              this.outputs.total = this.inputs.price + this.constants.shipping
+            }
+          },
+          mounted () {
+            //
+          }
+      })
+    </script>
+
+  </body>
+</html>
