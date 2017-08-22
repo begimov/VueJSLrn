@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      {{ name }}
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            name: 'GB'
+          },
+          created () {
+            console.log(this.name)
+          },
+          mounted () {
+            this.name = 'BG'
+          }
+      })
+    </script>
+
+  </body>
+</html>
