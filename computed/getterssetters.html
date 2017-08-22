@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <input type="text" v-model="computedAmount">
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            amount: 0
+          },
+          computed: {
+            computedAmount: {
+              get () {
+                return '$' + this.amount
+              },
+              set (value) {
+                if (!value) {
+                  this.amount = 0
+                }
+                this.amount = value.split('$').reverse()[0]
+              }
+            }
+          },
+          methods: {
+            //
+          },
+          mounted () {
+            //
+          }
+      })
+    </script>
+
+  </body>
+</html>
