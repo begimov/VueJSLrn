@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <a :href="url">Link</a>
+      <p :title="title"><a href="#" @click.prevent="clicked('title')" id="title">{{ title }}</a></p>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            url: 'http://aideus.com',
+            title: 'TITLE'
+          },
+          methods: {
+            clicked(elem) {
+              if (elem == "title") {
+                this.title = 'CHANGED'
+              }
+            }
+          },
+          mounted () {
+
+          }
+      })
+    </script>
+
+  </body>
+</html>
