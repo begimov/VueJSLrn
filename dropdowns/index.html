@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <form action="#" @submit.prevent="submit">
+        <select v-model="country" @change="countrySelected">
+          <option value="">Select country</option>
+          <option value="RU">Russia</option>
+          <option value="US">USA</option>
+        </select>
+        {{ country }}<br><br>
+
+
+
+        <select v-model="city" v-if="cities.length">
+          <option value="">Select city</option>
+          <option v-for="city in cities" :value="city.code">{{ city.name }}</option>
+        </select>
+        {{ city }}<br><br>
+        <button type="submit">Select</button>
+      </form>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let app = new Vue({
+          el: '#app',
+          data: {
+            country: '',
+            city: '',
+            cities: []
+          },
+          methods: {
+            countrySelected () {
+                this.country = 'RU'
+            },
+            submit () {
+              console.log(this.country, this.city, this.cities);
+            }
+          },
+          mounted () {
+            setTimeout(() => {
+              this.cities = [
+                { name: 'Petersburg', code: 'SPB' },
+                { name: 'Moscow', code: 'MSK' }
+              ]
+            }, 1000)
+          }
+      })
+    </script>
+
+  </body>
+</html>
