@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <counter :numbers-in="[1,2,3]"></counter>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+
+      let Counter = {
+        data() {
+          return {
+            numbers: this.numbersIn
+          }
+        },
+        props: {
+          numbersIn: {
+            type: Array,
+            default() {
+              return [0]
+            }
+          }
+        },
+        template: `
+          <div>
+            <ul>
+              <li v-for="number, key in numbers">{{ number }}
+              <button @click.prevent="increment(key)">Add</button></li>
+            </ul>
+            <p><a href="#" @click.prevent="addNewNumber">Add new number</a></p>
+            <p>{{ numbers }}</p>
+          </div>
+        `,
+        methods: {
+          increment(key) {
+            this.numbers = this.numbers.map(function (num, index) {
+              return (index === key) ? ++num : num
+            })
+            console.log(this.numbers)
+          },
+          addNewNumber () {
+            this.numbers.push(1)
+          }
+        }
+      }
+
+      let app = new Vue({
+          el: '#app',
+          components: {
+            'counter': Counter
+          }
+      })
+
+    </script>
+
+  </body>
+</html>
