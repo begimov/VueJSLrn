@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <register></register>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let CountryDD = {
+        template: `
+          <select id="country" @change="countrySelected" ref="country">
+            <option value="">Please select country</option>
+            <option value="ru">Russia</option>
+            <option value="uk">UK</option>
+            <option value="us">US</option>
+          </select>
+        `,
+        methods: {
+          countrySelected () {
+            this.$emit('input', this.$refs.country.value)
+          }
+        }
+      }
+      let Register = {
+        data() {
+          return {
+            form: {
+              name: '',
+              country: ''
+            }
+          }
+        },
+        template: `
+          <form action="#">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" id="name" v-model="form.name" />
+            </div>
+            <div class="form-group">
+              <label for="country">Country:</label>
+            </div>
+            <country-dropdown id="country" v-model="form.country"></country-dropdown>
+            {{ form }}
+          </form>
+        `,
+        components: {
+          'country-dropdown': CountryDD
+        }
+      }
+      let app = new Vue({
+          el: '#app',
+          components: {
+            'register': Register
+          }
+      })
+    </script>
+
+  </body>
+</html>
