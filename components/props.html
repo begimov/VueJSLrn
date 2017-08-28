@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <posts></posts>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let User = {
+        props: ['user'],
+        template: `
+            <div class="user">
+              <p>{{ user.name }}</p>
+            </div>
+        `
+      }
+      let Post = {
+        props: ['post'],
+        template: `
+            <div class="post">
+              <h1>{{ post.title }}</h1>
+              <user :user="post.user"></user>
+            </div>
+        `,
+        components: {
+          'user': User
+        }
+      }
+      let Posts = {
+        data () {
+          return {
+            posts: [
+              { id: 1, title: 'Post one', user: { name: 'Name1' } },
+              { id: 2, title: 'Post two', user: { name: 'Name2' } },
+              { id: 3, title: 'Post three', user: { name: 'Name3' } },
+            ]
+          }
+        },
+        template: `
+          <div class="posts">
+            <post v-for="post in posts" :post="post" :key="post.id"></post>
+          </div>
+        `,
+        components: {
+          'post': Post
+        }
+      }
+      let app = new Vue({
+          el: '#app',
+          components: {
+            'posts': Posts
+          }
+      })
+    </script>
+
+  </body>
+</html>
