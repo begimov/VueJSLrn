@@ -8,12 +8,41 @@
 
     <div id="app">
       <num :number="{ value: 10 }"></num>
-
+      <message></message>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
 
     <script>
+      let LowerCaseMessage = {
+        props: [
+          'message'
+        ],
+        template: `
+          <p>{{ lcmessage }}</p>
+        `,
+        computed: {
+          lcmessage() {
+            return this.message.toLowerCase()
+          }
+        }
+      }
+      let Message = {
+        data () {
+          return {
+            message: ''
+          }
+        },
+        template: `
+          <div>
+            <input type="text" v-model="message">
+            <lowercase-message :message="message"></lowercase-message>
+          </div>
+        `,
+        components: {
+          'lowercase-message': LowerCaseMessage
+        }
+      }
       let Num = {
         props: [
           'number'
@@ -25,7 +54,8 @@
       let app = new Vue({
           el: '#app',
           components: {
-            num: Num
+            'num': Num,
+            'message': Message
           }
       })
     </script>
