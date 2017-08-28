@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <number :number="11"></number>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let Num = {
+        props: {
+          // basic type check (`null` means accept any type)
+          number: {
+            type: Number,
+            validator: function (value) {
+              return value > 10
+            }
+          },
+          // multiple possible types
+          propB: [String, Number],
+          // a required string
+          propC: {
+            type: String,
+            // required: true
+          },
+          // a number with default value
+          propD: {
+            type: Number,
+            default: 100
+          },
+          // object/array defaults should be returned from a
+          // factory function
+          propE: {
+            type: Object,
+            default: function () {
+              return { message: 'hello' }
+            }
+          },
+          // custom validator function
+          propF: {
+            validator: function (value) {
+              return value > 10
+            }
+          }
+        },
+        template: `
+          <p>{{ number + 1 }}</p>
+        `,
+        mounted() {
+          console.log(this.propE)
+        }
+      }
+
+      let app = new Vue({
+          el: '#app',
+          components: {
+            'number': Num
+          }
+      })
+    </script>
+
+  </body>
+</html>
