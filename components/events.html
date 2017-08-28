@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <div id="app">
+      <counter></counter>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+      let IncrementButton = {
+        props: {
+          incrementValue: {
+            default: 10
+          }
+        },
+        template: `<button @click.prevent="increment">Increment</button>`,
+        methods: {
+          increment () {
+            this.$emit('increment', this.incrementValue)
+          }
+        }
+      }
+
+      let Counter = {
+        data () {
+          return {
+            number: 0
+          }
+        },
+        template: `
+          <div>
+            {{ number }}
+            <increment-button :incrementValue="100" v-on:increment="increment"></increment-button>
+          </div>
+        `,
+        methods: {
+          increment(value) {
+            this.number += value
+          }
+        },
+        components: {
+          'increment-button': IncrementButton
+        }
+      }
+
+      let app = new Vue({
+          el: '#app',
+          components: {
+            'counter': Counter
+          }
+      })
+    </script>
+
+  </body>
+</html>
